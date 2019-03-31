@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhu.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.dhu.domain.Address" >
+    <id column="addressId" property="addressid" jdbcType="CHAR" />
+    <result column="addressProvince" property="addressprovince" jdbcType="VARCHAR" />
+    <result column="addressCity" property="addresscity" jdbcType="VARCHAR" />
+    <result column="addressArea" property="addressarea" jdbcType="VARCHAR" />
+    <result column="addressDescription" property="addressdescription" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="CHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="userPhone" property="userphone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    addressId, addressProvince, addressCity, addressArea, addressDescription, userId, 
+    userName, userPhone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dhu.domain.AddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where addressId = #{addressid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from address
+    where addressId = #{addressid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dhu.domain.AddressExample" >
+    delete from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dhu.domain.Address" >
+    insert into address (addressId, addressProvince, addressCity, 
+      addressArea, addressDescription, userId, 
+      userName, userPhone)
+    values (#{addressid,jdbcType=CHAR}, #{addressprovince,jdbcType=VARCHAR}, #{addresscity,jdbcType=VARCHAR}, 
+      #{addressarea,jdbcType=VARCHAR}, #{addressdescription,jdbcType=VARCHAR}, #{userid,jdbcType=CHAR}, 
+      #{username,jdbcType=VARCHAR}, #{userphone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhu.domain.Address" >
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        addressId,
+      </if>
+      <if test="addressprovince != null" >
+        addressProvince,
+      </if>
+      <if test="addresscity != null" >
+        addressCity,
+      </if>
+      <if test="addressarea != null" >
+        addressArea,
+      </if>
+      <if test="addressdescription != null" >
+        addressDescription,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="userphone != null" >
+        userPhone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        #{addressid,jdbcType=CHAR},
+      </if>
+      <if test="addressprovince != null" >
+        #{addressprovince,jdbcType=VARCHAR},
+      </if>
+      <if test="addresscity != null" >
+        #{addresscity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressarea != null" >
+        #{addressarea,jdbcType=VARCHAR},
+      </if>
+      <if test="addressdescription != null" >
+        #{addressdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dhu.domain.AddressExample" resultType="java.lang.Integer" >
+    select count(*) from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update address
+    <set >
+      <if test="record.addressid != null" >
+        addressId = #{record.addressid,jdbcType=CHAR},
+      </if>
+      <if test="record.addressprovince != null" >
+        addressProvince = #{record.addressprovince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addresscity != null" >
+        addressCity = #{record.addresscity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressarea != null" >
+        addressArea = #{record.addressarea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressdescription != null" >
+        addressDescription = #{record.addressdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=CHAR},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userphone != null" >
+        userPhone = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update address
+    set addressId = #{record.addressid,jdbcType=CHAR},
+      addressProvince = #{record.addressprovince,jdbcType=VARCHAR},
+      addressCity = #{record.addresscity,jdbcType=VARCHAR},
+      addressArea = #{record.addressarea,jdbcType=VARCHAR},
+      addressDescription = #{record.addressdescription,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=CHAR},
+      userName = #{record.username,jdbcType=VARCHAR},
+      userPhone = #{record.userphone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhu.domain.Address" >
+    update address
+    <set >
+      <if test="addressprovince != null" >
+        addressProvince = #{addressprovince,jdbcType=VARCHAR},
+      </if>
+      <if test="addresscity != null" >
+        addressCity = #{addresscity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressarea != null" >
+        addressArea = #{addressarea,jdbcType=VARCHAR},
+      </if>
+      <if test="addressdescription != null" >
+        addressDescription = #{addressdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        userPhone = #{userphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where addressId = #{addressid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhu.domain.Address" >
+    update address
+    set addressProvince = #{addressprovince,jdbcType=VARCHAR},
+      addressCity = #{addresscity,jdbcType=VARCHAR},
+      addressArea = #{addressarea,jdbcType=VARCHAR},
+      addressDescription = #{addressdescription,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=CHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userPhone = #{userphone,jdbcType=VARCHAR}
+    where addressId = #{addressid,jdbcType=CHAR}
+  </update>
+</mapper>

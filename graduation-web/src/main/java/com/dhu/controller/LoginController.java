@@ -1,6 +1,5 @@
 package com.dhu.controller;
 
-import com.dhu.dao.UserDao;
 import com.dhu.domain.User;
 import com.dhu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

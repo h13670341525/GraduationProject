@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhu.dao.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.dhu.domain.Goods" >
+    <id column="goodsId" property="goodsid" jdbcType="CHAR" />
+    <result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+    <result column="salerId" property="salerid" jdbcType="CHAR" />
+    <result column="goodsPrice" property="goodsprice" jdbcType="DOUBLE" />
+    <result column="goodstypeId" property="goodstypeid" jdbcType="CHAR" />
+    <result column="produceDate" property="producedate" jdbcType="DATE" />
+    <result column="qualityPeriod" property="qualityperiod" jdbcType="INTEGER" />
+    <result column="goodsImage" property="goodsimage" jdbcType="VARCHAR" />
+    <result column="goodsDescription" property="goodsdescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    goodsId, goodsName, salerId, goodsPrice, goodstypeId, produceDate, qualityPeriod, 
+    goodsImage, goodsDescription
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dhu.domain.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goodsId = #{goodsid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from goods
+    where goodsId = #{goodsid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dhu.domain.GoodsExample" >
+    delete from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dhu.domain.Goods" >
+    insert into goods (goodsId, goodsName, salerId, 
+      goodsPrice, goodstypeId, produceDate, 
+      qualityPeriod, goodsImage, goodsDescription
+      )
+    values (#{goodsid,jdbcType=CHAR}, #{goodsname,jdbcType=VARCHAR}, #{salerid,jdbcType=CHAR}, 
+      #{goodsprice,jdbcType=DOUBLE}, #{goodstypeid,jdbcType=CHAR}, #{producedate,jdbcType=DATE}, 
+      #{qualityperiod,jdbcType=INTEGER}, #{goodsimage,jdbcType=VARCHAR}, #{goodsdescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhu.domain.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsname != null" >
+        goodsName,
+      </if>
+      <if test="salerid != null" >
+        salerId,
+      </if>
+      <if test="goodsprice != null" >
+        goodsPrice,
+      </if>
+      <if test="goodstypeid != null" >
+        goodstypeId,
+      </if>
+      <if test="producedate != null" >
+        produceDate,
+      </if>
+      <if test="qualityperiod != null" >
+        qualityPeriod,
+      </if>
+      <if test="goodsimage != null" >
+        goodsImage,
+      </if>
+      <if test="goodsdescription != null" >
+        goodsDescription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=CHAR},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="salerid != null" >
+        #{salerid,jdbcType=CHAR},
+      </if>
+      <if test="goodsprice != null" >
+        #{goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodstypeid != null" >
+        #{goodstypeid,jdbcType=CHAR},
+      </if>
+      <if test="producedate != null" >
+        #{producedate,jdbcType=DATE},
+      </if>
+      <if test="qualityperiod != null" >
+        #{qualityperiod,jdbcType=INTEGER},
+      </if>
+      <if test="goodsimage != null" >
+        #{goodsimage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsdescription != null" >
+        #{goodsdescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dhu.domain.GoodsExample" resultType="java.lang.Integer" >
+    select count(*) from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods
+    <set >
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid,jdbcType=CHAR},
+      </if>
+      <if test="record.goodsname != null" >
+        goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salerid != null" >
+        salerId = #{record.salerid,jdbcType=CHAR},
+      </if>
+      <if test="record.goodsprice != null" >
+        goodsPrice = #{record.goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodstypeid != null" >
+        goodstypeId = #{record.goodstypeid,jdbcType=CHAR},
+      </if>
+      <if test="record.producedate != null" >
+        produceDate = #{record.producedate,jdbcType=DATE},
+      </if>
+      <if test="record.qualityperiod != null" >
+        qualityPeriod = #{record.qualityperiod,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsimage != null" >
+        goodsImage = #{record.goodsimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsdescription != null" >
+        goodsDescription = #{record.goodsdescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods
+    set goodsId = #{record.goodsid,jdbcType=CHAR},
+      goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      salerId = #{record.salerid,jdbcType=CHAR},
+      goodsPrice = #{record.goodsprice,jdbcType=DOUBLE},
+      goodstypeId = #{record.goodstypeid,jdbcType=CHAR},
+      produceDate = #{record.producedate,jdbcType=DATE},
+      qualityPeriod = #{record.qualityperiod,jdbcType=INTEGER},
+      goodsImage = #{record.goodsimage,jdbcType=VARCHAR},
+      goodsDescription = #{record.goodsdescription,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhu.domain.Goods" >
+    update goods
+    <set >
+      <if test="goodsname != null" >
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="salerid != null" >
+        salerId = #{salerid,jdbcType=CHAR},
+      </if>
+      <if test="goodsprice != null" >
+        goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodstypeid != null" >
+        goodstypeId = #{goodstypeid,jdbcType=CHAR},
+      </if>
+      <if test="producedate != null" >
+        produceDate = #{producedate,jdbcType=DATE},
+      </if>
+      <if test="qualityperiod != null" >
+        qualityPeriod = #{qualityperiod,jdbcType=INTEGER},
+      </if>
+      <if test="goodsimage != null" >
+        goodsImage = #{goodsimage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsdescription != null" >
+        goodsDescription = #{goodsdescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goodsId = #{goodsid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhu.domain.Goods" >
+    update goods
+    set goodsName = #{goodsname,jdbcType=VARCHAR},
+      salerId = #{salerid,jdbcType=CHAR},
+      goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+      goodstypeId = #{goodstypeid,jdbcType=CHAR},
+      produceDate = #{producedate,jdbcType=DATE},
+      qualityPeriod = #{qualityperiod,jdbcType=INTEGER},
+      goodsImage = #{goodsimage,jdbcType=VARCHAR},
+      goodsDescription = #{goodsdescription,jdbcType=VARCHAR}
+    where goodsId = #{goodsid,jdbcType=CHAR}
+  </update>
+</mapper>
