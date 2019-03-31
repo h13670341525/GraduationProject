@@ -44,14 +44,14 @@ public class EmailHelper {
             //发送验证码
             case EmailConstant.ID_CODE:
                 // 4. Subject: 邮件主题（标题有广告嫌疑，避免被邮件服务器误认为是滥发广告以至返回失败，请修改标题）
-                message.setSubject("验证码", "UTF-8");
+                message.setSubject("【吃货商城】验证码", "UTF-8");
 
                 // 5. Content: 邮件正文（可以使用html标签）（内容有广告嫌疑，避免被邮件服务器误认为是滥发广告以至返回失败，请修改发送内容）
                 message.setContent("您的验证码为:"+info, "text/html;charset=UTF-8");
                 break;
             case EmailConstant.RESET_PSW:
                 // 4. Subject: 邮件主题（标题有广告嫌疑，避免被邮件服务器误认为是滥发广告以至返回失败，请修改标题）
-                message.setSubject("找回密码", "UTF-8");
+                message.setSubject("【吃货商城】找回密码", "UTF-8");
 
                 // 5. Content: 邮件正文（可以使用html标签）（内容有广告嫌疑，避免被邮件服务器误认为是滥发广告以至返回失败，请修改发送内容）
                 message.setContent("您的新密码为:"+info, "text/html;charset=UTF-8");

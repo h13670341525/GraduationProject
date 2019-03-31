@@ -1,5 +1,6 @@
-package com.dhu.controller;
+package com.dhu.login;
 
+import com.dhu.ReturnResult;
 import com.dhu.domain.User;
 import com.dhu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,11 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping("/login.do")
-    public String login(){
-        User user = new User();
-        user.setUserName("Cherish");
-        userService.insertUser(user);
-        return "hello world";
+    public ReturnResult login(String useremail,String userpassword){
+        try{
+
+        }catch (Exception e){
+          return ReturnResult.returnResult(LoginEnum.SERVER_ERROR.getCode(),LoginEnum.SERVER_ERROR.getMsg());
+        }
     }
 }
