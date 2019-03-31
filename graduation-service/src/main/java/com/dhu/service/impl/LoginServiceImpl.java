@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
          *登录失败;
          */
         if(users.size()==0){
-            result.put("isSuccess",false);
+            result.put(LOGIN_STATUS,false);
         }
         /*
          * 登录成功;
