@@ -11,4 +11,5 @@ public interface LoginService {
     Map<String,Object> login(String useremail,String userpassword);
     boolean register(String useremail,String userpassword);
     boolean reminder(String useremail);
+    String identifyCode(String useremail);
 }

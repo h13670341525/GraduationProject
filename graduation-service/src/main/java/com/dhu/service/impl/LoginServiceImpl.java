@@ -110,11 +110,36 @@ public class LoginServiceImpl implements LoginService {
          */
         else{
             User user = users.get(0);
-            String newPassword = PswHelper.generatePsw();
+            String newPassword = CodeHelper.generateCode();
             user.setUserpassword(MD5Helper.EncoderByMd5(newPassword));
             userMapper.updateByPrimaryKey(user);
             EmailHelper.sendMail(useremail,EmailConstant.RESET_PSW,newPassword);
             return true;
+        }
+    }
+
+    /*
+     *  发送验证码
+     */
+    public String identifyCode(String useremail) {
+        String code = CodeHelper.generateCode();
+        UserExample userExample = new UserExample();
+        userExample.createCriteria()
+                   .andUseremailEqualTo(useremail);
+
+        /*
+         *  该邮箱未被注册
+         */
+        if(userMapper.countByExample(userExample)==0){
+            return null;
+        }
+
+        /*
+         *  向指定邮箱发送验证码
+         */
+        else{
+            EmailHelper.sendMail(useremail,EmailConstant.ID_CODE,code);
+            return code;
         }
     }
 }

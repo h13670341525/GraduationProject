@@ -118,4 +118,30 @@ public class LoginController {
             return ReturnResult.returnResult(LoginEnum.SERVER_ERROR.getCode(),LoginEnum.SERVER_ERROR.getMsg());
         }
     }
+
+    /*
+     *   验证码接口
+     */
+    @ResponseBody
+    @RequestMapping("/idcode.do")
+    public ReturnResult identifyCode(String useremail){
+        try{
+            String result = loginService.identifyCode(useremail);
+            /*
+             *   邮箱未被注册
+             */
+            if(result == null){
+                return ReturnResult.returnResult(LoginEnum.REMINDER_FAIL.getCode(),LoginEnum.REMINDER_FAIL.getMsg());
+            }
+
+            /*
+             *  发送验证码成功
+             */
+            else{
+                return ReturnResult.returnResult(LoginEnum.SENDCODE_SUCCESS.getCode(),LoginEnum.SENDCODE_SUCCESS.getMsg(),result);
+            }
+        }catch (Exception e){
+            return ReturnResult.returnResult(LoginEnum.SERVER_ERROR.getCode(),LoginEnum.SERVER_ERROR.getMsg());
+        }
+    }
 }
