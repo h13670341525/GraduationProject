@@ -1,6 +1,9 @@
 package com.dhu.service.impl;
 
+import com.auth0.jwt.JWT;
+import com.dhu.dao.UserMapper;
 import com.dhu.domain.User;
+import com.dhu.helper.JwtHelper;
 import com.dhu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +20,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private UserMapper userMapper;
 
     public void insertUser(User user) {
+    }
+
+    public User info(String token) {
+        String userid = JwtHelper.getUserid(token);
+        return userMapper.selectByPrimaryKey(userid);
     }
 }

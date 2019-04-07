@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhu.dao.GoodsbigtypeMapper" >
+  <resultMap id="BaseResultMap" type="com.dhu.domain.Goodsbigtype" >
+    <id column="goodstypeId" property="goodstypeid" jdbcType="CHAR" />
+    <result column="goodstypeName" property="goodstypename" jdbcType="VARCHAR" />
+    <result column="goodstypeImage" property="goodstypeimage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    goodstypeId, goodstypeName, goodstypeImage
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dhu.domain.GoodsbigtypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goodsbigtype
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodsbigtype
+    where goodstypeId = #{goodstypeid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from goodsbigtype
+    where goodstypeId = #{goodstypeid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dhu.domain.GoodsbigtypeExample" >
+    delete from goodsbigtype
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dhu.domain.Goodsbigtype" >
+    insert into goodsbigtype (goodstypeId, goodstypeName, goodstypeImage
+      )
+    values (#{goodstypeid,jdbcType=CHAR}, #{goodstypename,jdbcType=VARCHAR}, #{goodstypeimage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhu.domain.Goodsbigtype" >
+    insert into goodsbigtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodstypeid != null" >
+        goodstypeId,
+      </if>
+      <if test="goodstypename != null" >
+        goodstypeName,
+      </if>
+      <if test="goodstypeimage != null" >
+        goodstypeImage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodstypeid != null" >
+        #{goodstypeid,jdbcType=CHAR},
+      </if>
+      <if test="goodstypename != null" >
+        #{goodstypename,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstypeimage != null" >
+        #{goodstypeimage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dhu.domain.GoodsbigtypeExample" resultType="java.lang.Integer" >
+    select count(*) from goodsbigtype
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goodsbigtype
+    <set >
+      <if test="record.goodstypeid != null" >
+        goodstypeId = #{record.goodstypeid,jdbcType=CHAR},
+      </if>
+      <if test="record.goodstypename != null" >
+        goodstypeName = #{record.goodstypename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodstypeimage != null" >
+        goodstypeImage = #{record.goodstypeimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goodsbigtype
+    set goodstypeId = #{record.goodstypeid,jdbcType=CHAR},
+      goodstypeName = #{record.goodstypename,jdbcType=VARCHAR},
+      goodstypeImage = #{record.goodstypeimage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhu.domain.Goodsbigtype" >
+    update goodsbigtype
+    <set >
+      <if test="goodstypename != null" >
+        goodstypeName = #{goodstypename,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstypeimage != null" >
+        goodstypeImage = #{goodstypeimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goodstypeId = #{goodstypeid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhu.domain.Goodsbigtype" >
+    update goodsbigtype
+    set goodstypeName = #{goodstypename,jdbcType=VARCHAR},
+      goodstypeImage = #{goodstypeimage,jdbcType=VARCHAR}
+    where goodstypeId = #{goodstypeid,jdbcType=CHAR}
+  </update>
+</mapper>

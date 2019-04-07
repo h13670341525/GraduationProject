@@ -10,7 +10,7 @@ public enum LoginEnum {
     REGISTER_PASSWORD_FAIL("0007","密码不符合规则"),
     REMINDER_FAIL("0008","邮箱未被注册"),
     SENDCODE_SUCCESS("0009","发送验证码成功"),
-    SERVER_ERROR("00010","服务器错误");
+    SERVER_ERROR("0010","服务器错误");
 
 
     private String code;

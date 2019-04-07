@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.dhu.domain.Goodstype" >
     <id column="goodstypeId" property="goodstypeid" jdbcType="CHAR" />
     <result column="goodstypeName" property="goodstypename" jdbcType="VARCHAR" />
+    <result column="goodsbigtypeId" property="goodsbigtypeid" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    goodstypeId, goodstypeName
+    goodstypeId, goodstypeName, goodsbigtypeId
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dhu.domain.GoodstypeExample" >
     select
@@ -97,8 +98,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.dhu.domain.Goodstype" >
-    insert into goodstype (goodstypeId, goodstypeName)
-    values (#{goodstypeid,jdbcType=CHAR}, #{goodstypename,jdbcType=VARCHAR})
+    insert into goodstype (goodstypeId, goodstypeName, goodsbigtypeId
+      )
+    values (#{goodstypeid,jdbcType=CHAR}, #{goodstypename,jdbcType=VARCHAR}, #{goodsbigtypeid,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dhu.domain.Goodstype" >
     insert into goodstype
@@ -109,6 +112,9 @@
       <if test="goodstypename != null" >
         goodstypeName,
       </if>
+      <if test="goodsbigtypeid != null" >
+        goodsbigtypeId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="goodstypeid != null" >
@@ -116,6 +122,9 @@
       </if>
       <if test="goodstypename != null" >
         #{goodstypename,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsbigtypeid != null" >
+        #{goodsbigtypeid,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -134,6 +143,9 @@
       <if test="record.goodstypename != null" >
         goodstypeName = #{record.goodstypename,jdbcType=VARCHAR},
       </if>
+      <if test="record.goodsbigtypeid != null" >
+        goodsbigtypeId = #{record.goodsbigtypeid,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -142,7 +154,8 @@
   <update id="updateByExample" parameterType="map" >
     update goodstype
     set goodstypeId = #{record.goodstypeid,jdbcType=CHAR},
-      goodstypeName = #{record.goodstypename,jdbcType=VARCHAR}
+      goodstypeName = #{record.goodstypename,jdbcType=VARCHAR},
+      goodsbigtypeId = #{record.goodsbigtypeid,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -153,12 +166,16 @@
       <if test="goodstypename != null" >
         goodstypeName = #{goodstypename,jdbcType=VARCHAR},
       </if>
+      <if test="goodsbigtypeid != null" >
+        goodsbigtypeId = #{goodsbigtypeid,jdbcType=CHAR},
+      </if>
     </set>
     where goodstypeId = #{goodstypeid,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dhu.domain.Goodstype" >
     update goodstype
-    set goodstypeName = #{goodstypename,jdbcType=VARCHAR}
+    set goodstypeName = #{goodstypename,jdbcType=VARCHAR},
+      goodsbigtypeId = #{goodsbigtypeid,jdbcType=CHAR}
     where goodstypeId = #{goodstypeid,jdbcType=CHAR}
   </update>
 </mapper>

@@ -243,6 +243,76 @@ public class GoodstypeExample {
             addCriterion("goodstypeName not between", value1, value2, "goodstypename");
             return (Criteria) this;
         }
+
+        public Criteria andGoodsbigtypeidIsNull() {
+            addCriterion("goodsbigtypeId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidIsNotNull() {
+            addCriterion("goodsbigtypeId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidEqualTo(String value) {
+            addCriterion("goodsbigtypeId =", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidNotEqualTo(String value) {
+            addCriterion("goodsbigtypeId <>", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidGreaterThan(String value) {
+            addCriterion("goodsbigtypeId >", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidGreaterThanOrEqualTo(String value) {
+            addCriterion("goodsbigtypeId >=", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidLessThan(String value) {
+            addCriterion("goodsbigtypeId <", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidLessThanOrEqualTo(String value) {
+            addCriterion("goodsbigtypeId <=", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidLike(String value) {
+            addCriterion("goodsbigtypeId like", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidNotLike(String value) {
+            addCriterion("goodsbigtypeId not like", value, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidIn(List<String> values) {
+            addCriterion("goodsbigtypeId in", values, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidNotIn(List<String> values) {
+            addCriterion("goodsbigtypeId not in", values, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidBetween(String value1, String value2) {
+            addCriterion("goodsbigtypeId between", value1, value2, "goodsbigtypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsbigtypeidNotBetween(String value1, String value2) {
+            addCriterion("goodsbigtypeId not between", value1, value2, "goodsbigtypeid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

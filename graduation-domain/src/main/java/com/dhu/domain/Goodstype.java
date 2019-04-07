@@ -5,6 +5,8 @@ public class Goodstype {
 
     private String goodstypename;
 
+    private String goodsbigtypeid;
+
     public String getGoodstypeid() {
         return goodstypeid;
     }
@@ -19,5 +21,13 @@ public class Goodstype {
 
     public void setGoodstypename(String goodstypename) {
         this.goodstypename = goodstypename == null ? null : goodstypename.trim();
+    }
+
+    public String getGoodsbigtypeid() {
+        return goodsbigtypeid;
+    }
+
+    public void setGoodsbigtypeid(String goodsbigtypeid) {
+        this.goodsbigtypeid = goodsbigtypeid == null ? null : goodsbigtypeid.trim();
     }
 }

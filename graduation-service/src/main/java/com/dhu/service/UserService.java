@@ -11,4 +11,5 @@ import com.dhu.domain.User;
  */
 public interface UserService {
     void insertUser(User user);
+    User info(String token);
 }
