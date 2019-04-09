@@ -4,7 +4,9 @@
   <resultMap id="BaseResultMap" type="com.dhu.domain.Goodsbigtype" >
     <id column="goodstypeId" property="goodstypeid" jdbcType="CHAR" />
     <result column="goodstypeName" property="goodstypename" jdbcType="VARCHAR" />
+    <result column="goodsDescription" property="goodsdescription" jdbcType="VARCHAR" />
     <result column="goodstypeImage" property="goodstypeimage" jdbcType="VARCHAR" />
+    <result column="goodsTypeBackImage" property="goodstypebackimage" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    goodstypeId, goodstypeName, goodstypeImage
+    goodstypeId, goodstypeName, goodsDescription, goodstypeImage, goodsTypeBackImage
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dhu.domain.GoodsbigtypeExample" >
     select
@@ -98,10 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.dhu.domain.Goodsbigtype" >
-    insert into goodsbigtype (goodstypeId, goodstypeName, goodstypeImage
-      )
-    values (#{goodstypeid,jdbcType=CHAR}, #{goodstypename,jdbcType=VARCHAR}, #{goodstypeimage,jdbcType=VARCHAR}
-      )
+    insert into goodsbigtype (goodstypeId, goodstypeName, goodsDescription, 
+      goodstypeImage, goodsTypeBackImage)
+    values (#{goodstypeid,jdbcType=CHAR}, #{goodstypename,jdbcType=VARCHAR}, #{goodsdescription,jdbcType=VARCHAR}, 
+      #{goodstypeimage,jdbcType=VARCHAR}, #{goodstypebackimage,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dhu.domain.Goodsbigtype" >
     insert into goodsbigtype
@@ -112,8 +114,14 @@
       <if test="goodstypename != null" >
         goodstypeName,
       </if>
+      <if test="goodsdescription != null" >
+        goodsDescription,
+      </if>
       <if test="goodstypeimage != null" >
         goodstypeImage,
+      </if>
+      <if test="goodstypebackimage != null" >
+        goodsTypeBackImage,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -123,8 +131,14 @@
       <if test="goodstypename != null" >
         #{goodstypename,jdbcType=VARCHAR},
       </if>
+      <if test="goodsdescription != null" >
+        #{goodsdescription,jdbcType=VARCHAR},
+      </if>
       <if test="goodstypeimage != null" >
         #{goodstypeimage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstypebackimage != null" >
+        #{goodstypebackimage,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -143,8 +157,14 @@
       <if test="record.goodstypename != null" >
         goodstypeName = #{record.goodstypename,jdbcType=VARCHAR},
       </if>
+      <if test="record.goodsdescription != null" >
+        goodsDescription = #{record.goodsdescription,jdbcType=VARCHAR},
+      </if>
       <if test="record.goodstypeimage != null" >
         goodstypeImage = #{record.goodstypeimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodstypebackimage != null" >
+        goodsTypeBackImage = #{record.goodstypebackimage,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -155,7 +175,9 @@
     update goodsbigtype
     set goodstypeId = #{record.goodstypeid,jdbcType=CHAR},
       goodstypeName = #{record.goodstypename,jdbcType=VARCHAR},
-      goodstypeImage = #{record.goodstypeimage,jdbcType=VARCHAR}
+      goodsDescription = #{record.goodsdescription,jdbcType=VARCHAR},
+      goodstypeImage = #{record.goodstypeimage,jdbcType=VARCHAR},
+      goodsTypeBackImage = #{record.goodstypebackimage,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -166,8 +188,14 @@
       <if test="goodstypename != null" >
         goodstypeName = #{goodstypename,jdbcType=VARCHAR},
       </if>
+      <if test="goodsdescription != null" >
+        goodsDescription = #{goodsdescription,jdbcType=VARCHAR},
+      </if>
       <if test="goodstypeimage != null" >
         goodstypeImage = #{goodstypeimage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstypebackimage != null" >
+        goodsTypeBackImage = #{goodstypebackimage,jdbcType=VARCHAR},
       </if>
     </set>
     where goodstypeId = #{goodstypeid,jdbcType=CHAR}
@@ -175,7 +203,9 @@
   <update id="updateByPrimaryKey" parameterType="com.dhu.domain.Goodsbigtype" >
     update goodsbigtype
     set goodstypeName = #{goodstypename,jdbcType=VARCHAR},
-      goodstypeImage = #{goodstypeimage,jdbcType=VARCHAR}
+      goodsDescription = #{goodsdescription,jdbcType=VARCHAR},
+      goodstypeImage = #{goodstypeimage,jdbcType=VARCHAR},
+      goodsTypeBackImage = #{goodstypebackimage,jdbcType=VARCHAR}
     where goodstypeId = #{goodstypeid,jdbcType=CHAR}
   </update>
 </mapper>

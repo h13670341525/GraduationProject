@@ -244,6 +244,76 @@ public class GoodsbigtypeExample {
             return (Criteria) this;
         }
 
+        public Criteria andGoodsdescriptionIsNull() {
+            addCriterion("goodsDescription is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionIsNotNull() {
+            addCriterion("goodsDescription is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionEqualTo(String value) {
+            addCriterion("goodsDescription =", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionNotEqualTo(String value) {
+            addCriterion("goodsDescription <>", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionGreaterThan(String value) {
+            addCriterion("goodsDescription >", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("goodsDescription >=", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionLessThan(String value) {
+            addCriterion("goodsDescription <", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionLessThanOrEqualTo(String value) {
+            addCriterion("goodsDescription <=", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionLike(String value) {
+            addCriterion("goodsDescription like", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionNotLike(String value) {
+            addCriterion("goodsDescription not like", value, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionIn(List<String> values) {
+            addCriterion("goodsDescription in", values, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionNotIn(List<String> values) {
+            addCriterion("goodsDescription not in", values, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionBetween(String value1, String value2) {
+            addCriterion("goodsDescription between", value1, value2, "goodsdescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsdescriptionNotBetween(String value1, String value2) {
+            addCriterion("goodsDescription not between", value1, value2, "goodsdescription");
+            return (Criteria) this;
+        }
+
         public Criteria andGoodstypeimageIsNull() {
             addCriterion("goodstypeImage is null");
             return (Criteria) this;
@@ -311,6 +381,76 @@ public class GoodsbigtypeExample {
 
         public Criteria andGoodstypeimageNotBetween(String value1, String value2) {
             addCriterion("goodstypeImage not between", value1, value2, "goodstypeimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageIsNull() {
+            addCriterion("goodsTypeBackImage is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageIsNotNull() {
+            addCriterion("goodsTypeBackImage is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageEqualTo(String value) {
+            addCriterion("goodsTypeBackImage =", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageNotEqualTo(String value) {
+            addCriterion("goodsTypeBackImage <>", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageGreaterThan(String value) {
+            addCriterion("goodsTypeBackImage >", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageGreaterThanOrEqualTo(String value) {
+            addCriterion("goodsTypeBackImage >=", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageLessThan(String value) {
+            addCriterion("goodsTypeBackImage <", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageLessThanOrEqualTo(String value) {
+            addCriterion("goodsTypeBackImage <=", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageLike(String value) {
+            addCriterion("goodsTypeBackImage like", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageNotLike(String value) {
+            addCriterion("goodsTypeBackImage not like", value, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageIn(List<String> values) {
+            addCriterion("goodsTypeBackImage in", values, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageNotIn(List<String> values) {
+            addCriterion("goodsTypeBackImage not in", values, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageBetween(String value1, String value2) {
+            addCriterion("goodsTypeBackImage between", value1, value2, "goodstypebackimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodstypebackimageNotBetween(String value1, String value2) {
+            addCriterion("goodsTypeBackImage not between", value1, value2, "goodstypebackimage");
             return (Criteria) this;
         }
     }

@@ -11,6 +11,8 @@ create table goodsbigtype
 (
    goodstypeId char(32),
    goodstypeName varchar(30) not null unique,
+   goodsDescription varchar(20),
    goodstypeImage varchar(50) ,
+   goodsTypeBackImage varchar(50),
    primary key(goodstypeId)
 )
