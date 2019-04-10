@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -87,7 +88,7 @@
         </div>
         <div class="clear"></div>
       <div id="shopCart">
-          <div v-for="item in shopcarts">
+          <div v-for="(item,index) in shopcarts">
         <tr  class="item-list">
             <div class="bundle  bundle-last ">
                 <div class="clear"></div>
@@ -95,7 +96,7 @@
                     <ul class="item-content clearfix">
                         <li class="td td-chk">
                             <div class="cart-checkbox ">
-                                <input class="check" id=""  value="170037950254" type="checkbox">
+                                <input class="check"  name="check" type="checkbox" v-on:click="mySelect()" v-bind:value="index">
                             </div>
                         </li>
                         <li class="td td-item">
@@ -131,16 +132,16 @@
                             <div class="amount-wrapper ">
                                 <div class="item-amount ">
                                     <div class="sl">
-                                        <input class="min am-btn" name="" type="button" value="-" />
+                                        <input class="min am-btn" name="" type="button" value="-" v-on:click="reduce(index)"/>
                                         <input class="text_box" name="" type="text"  style="width:30px;" v-model="item.goodsnum"/>
-                                        <input class="add am-btn" name="" type="button" value="+" />
+                                        <input class="add am-btn" name="" type="button" value="+" v-on:click="add(index)"/>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li class="td td-sum">
                             <div class="td-inner">
-                                <em tabindex="0" class="J_ItemSum number">{{item.goodsnum*item.goodsprice}}</em>
+                                <em  id="2" class="J_ItemSum number">{{item.goodsnum*item.goodsprice}}</em>
                             </div>
                         </li>
                         <li class="td td-op">
@@ -187,7 +188,7 @@
                 <strong class="price">¥<em id="J_Total">0.00</em></strong>
             </div>
             <div class="btn-area">
-                <a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+                <a href="#" onclick="pay()" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
                     <span>结&nbsp;算</span></a>
             </div>
         </div>
@@ -220,9 +221,6 @@
 
 </div>
 
-<!--操作页面-->
-
-<div class="theme-popover-mask"></div>
 
 <div class="theme-popover">
     <div class="theme-span"></div>
@@ -297,8 +295,30 @@
         el:'#shopCart',
         data:{
             shopcarts:[]
+        },
+        methods: {
+            mySelect: function () {
+                var total = 0;
+                var checkGroup = $("input[name='check']");
+                for(var i=0; checkGroup.length > i; i++){
+                    if(checkGroup[i].checked){
+                        var index = parseInt(checkGroup[i].value);
+                        total += this.shopcarts[index].goodsnum*this.shopcarts[index].goodsprice;
+                    }
+                }
+                $("#J_Total").html(total)
+            },
+            add:function (index) {
+                this.shopcarts[index].goodsnum= this.shopcarts[index].goodsnum+1;
+                this.mySelect();
+            },
+            reduce:function (index) {
+                this.shopcarts[index].goodsnum = this.shopcarts[index].goodsnum>1?this.shopcarts[index].goodsnum-1:1;
+                this.mySelect();
+            }
         }
     });
+    $(function () {
         $.get('/GraduationProject/fetchShopcart.do',function (res) {
             if(res.code == "0002"){
                 shopCart.shopcarts = res.data;
@@ -306,7 +326,21 @@
             else{
                 alert(res.msg);
             }
+        });
     })
+    function pay() {
+        var goods = [];
+        var checkGroup = $("input[name='check']");
+        for(var i=0; checkGroup.length > i; i++){
+            if(checkGroup[i].checked){
+                var index = parseInt(checkGroup[i].value);
+                var good =shopCart.shopcarts[index];
+                goods.push(good);
+            }
+        }
+        alert(JSON.stringify(goods));
+        window.location.href=encodeURI("pay.html?goodslist="+JSON.stringify(goods));
+    }
 </script>
 </body>
 
